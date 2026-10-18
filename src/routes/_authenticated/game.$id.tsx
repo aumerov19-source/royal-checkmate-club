@@ -99,7 +99,7 @@ function GamePage() {
   useEffect(() => {
     if (!game) return;
     if (lastMoveCount.current !== null && moves.length > lastMoveCount.current) {
-      playSound(game.status === "finished" ? "end" : soundForSan(moves[moves.length - 1]));
+      playSound(game.status === "finished" ? "end" : soundForSan(moves[moves.length - 1]!));
     } else if (lastMoveCount.current !== null && game.status === "finished") playSound("end");
     lastMoveCount.current = moves.length;
   }, [moves.length, game?.status]); // eslint-disable-line react-hooks/exhaustive-deps

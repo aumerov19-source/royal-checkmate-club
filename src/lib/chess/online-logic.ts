@@ -49,7 +49,7 @@ type Result = { ok: true; update: GameUpdate } | { ok: false; error: string };
 export function applyOnlineMove(
   g: OnlineGame,
   userId: string,
-  mv: { from: string; to: string; promotion?: string },
+  mv: { from: string; to: string; promotion?: string | undefined },
   now: number,
 ): Result {
   if (g.status !== "active") return { ok: false, error: "Game is not active" };

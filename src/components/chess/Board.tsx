@@ -10,7 +10,7 @@ let idSeq = 0;
 
 function piecesFromFen(fen: string): { sq: string; code: string }[] {
   const out: { sq: string; code: string }[] = [];
-  const rows = fen.split(" ")[0].split("/");
+  const rows = fen.split(" ")[0]!.split("/");
   rows.forEach((row, ri) => {
     let f = 0;
     for (const ch of row) {
