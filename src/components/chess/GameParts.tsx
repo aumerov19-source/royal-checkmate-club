@@ -4,7 +4,7 @@ import { Bot } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatClock } from "@/lib/chess/utils";
 
-export function PlayerAvatar({ name, bot, size = 40 }: { name: string; bot?: boolean; size?: number }) {
+export function PlayerAvatar({ name, bot, size = 40 }: { name: string; bot?: boolean | undefined; size?: number }) {
   const initials = name.split(/\s+/).map((s) => s[0]).join("").slice(0, 2).toUpperCase() || "?";
   return (
     <div
@@ -20,8 +20,8 @@ export function PlayerAvatar({ name, bot, size = 40 }: { name: string; bot?: boo
 export function PlayerBar({
   name, rating, color, captured, advantage, clockMs, active, online, bot,
 }: {
-  name: string; rating?: number | null; color: Color; captured: PieceSymbol[]; advantage: number;
-  clockMs?: number | null; active: boolean; online?: boolean | null; bot?: boolean;
+  name: string; rating?: number | null | undefined; color: Color; captured: PieceSymbol[]; advantage: number;
+  clockMs?: number | null; active: boolean; online?: boolean | null; bot?: boolean | undefined;
 }) {
   const opp = color === "w" ? "b" : "w";
   return (
@@ -71,7 +71,7 @@ export function MoveList({ moves }: { moves: string[] }) {
     if (el) { el.scrollLeft = el.scrollWidth; el.scrollTop = el.scrollHeight; }
   }, [moves.length]);
   const pairs: [string, string | undefined][] = [];
-  for (let i = 0; i < moves.length; i += 2) pairs.push([moves[i], moves[i + 1]]);
+  for (let i = 0; i < moves.length; i += 2) pairs.push([moves[i]!, moves[i + 1]]);
   return (
     <div ref={ref} className="flex gap-x-3 gap-y-1 overflow-x-auto whitespace-nowrap py-1 text-sm lg:max-h-72 lg:flex-col lg:overflow-y-auto lg:overflow-x-hidden" aria-label="Move history">
       {pairs.length === 0 && <span className="text-muted-foreground">No moves yet</span>}

@@ -29,7 +29,7 @@ function ComputerPage() {
     return (
       <AppShell wide>
         <div className="mb-3 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">vs {LEVELS[game.level - 1].name}</h1>
+          <h1 className="text-2xl font-bold">vs {LEVELS[game.level - 1]!.name}</h1>
           <Button variant="ghost" size="sm" onClick={() => setGame(null)}>New setup</Button>
         </div>
         <OfflineGame key={game.key} mode="computer" level={game.level} playerColor={game.color} />

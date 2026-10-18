@@ -26,10 +26,10 @@ export function evaluate(chess: Chess): number {
   const board = chess.board();
   for (let r = 0; r < 8; r++) {
     for (let f = 0; f < 8; f++) {
-      const p = board[r][f];
+      const p = board[r]![f];
       if (!p) continue;
       const idx = p.color === "w" ? r * 8 + f : (7 - r) * 8 + f;
-      const v = VAL[p.type] + PST[p.type][idx];
+      const v = VAL[p.type]! + PST[p.type]![idx]!;
       score += p.color === "w" ? v : -v;
     }
   }
@@ -40,8 +40,8 @@ function orderMoves(moves: Move[]): Move[] {
   return moves.sort((a, b) => score(b) - score(a));
   function score(m: Move) {
     let s = 0;
-    if (m.captured) s += 10 * VAL[m.captured] - VAL[m.piece];
-    if (m.promotion) s += VAL[m.promotion];
+    if (m.captured) s += 10 * VAL[m.captured]! - VAL[m.piece]!;
+    if (m.promotion) s += VAL[m.promotion]!;
     if (m.san.includes("+")) s += 50;
     return s;
   }
@@ -69,7 +69,7 @@ function negamax(chess: Chess, depth: number, alpha: number, beta: number, ply: 
   return best;
 }
 
-export type EngineMove = { from: string; to: string; promotion?: string };
+export type EngineMove = { from: string; to: string; promotion?: string | undefined };
 
 /** Picks a move for the side to move. Deterministic except level 1 and tie-breaks. */
 export function findBestMove(fen: string, level: Level, timeMs = 2500, rand = Math.random): EngineMove | null {
@@ -89,6 +89,6 @@ export function findBestMove(fen: string, level: Level, timeMs = 2500, rand = Ma
     if (v > bestScore + 0.5) { bestScore = v; best = [m]; }
     else if (Math.abs(v - bestScore) <= 0.5) best.push(m);
   }
-  const pick = best[Math.floor(rand() * best.length)];
+  const pick = best[Math.floor(rand() * best.length)]!;
   return { from: pick.from, to: pick.to, promotion: pick.promotion };
 }

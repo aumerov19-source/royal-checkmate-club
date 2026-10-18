@@ -8,11 +8,11 @@ export function capturedBy(fen: string, color: Color): PieceSymbol[] {
   const chess = new Chess(fen);
   const opp: Color = color === "w" ? "b" : "w";
   const counts: Record<string, number> = { p: 0, n: 0, b: 0, r: 0, q: 0, k: 0 };
-  for (const row of chess.board()) for (const p of row) if (p && p.color === opp) counts[p.type]++;
+  for (const row of chess.board()) for (const p of row) if (p && p.color === opp) counts[p.type] = (counts[p.type] ?? 0) + 1;
   const out: PieceSymbol[] = [];
   (["q", "r", "b", "n", "p"] as PieceSymbol[]).forEach((t) => {
     // promotions can make counts exceed start; clamp at 0
-    const missing = Math.max(0, START_COUNTS[t] - counts[t]);
+    const missing = Math.max(0, START_COUNTS[t] - (counts[t] ?? 0));
     for (let i = 0; i < missing; i++) out.push(t);
   });
   return out;

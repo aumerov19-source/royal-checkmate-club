@@ -30,7 +30,7 @@ export function OfflineGame({ mode, level = 2, playerColor = "w", timeMs = null 
     return e;
   }, []);
 
-  const doMove = useCallback((m: { from: string; to: string; promotion?: string }) => {
+  const doMove = useCallback((m: { from: string; to: string; promotion?: string | undefined }) => {
     try {
       const played = chessRef.current.move({ from: m.from, to: m.to, promotion: m.promotion ?? "q" });
       const e = sync();
