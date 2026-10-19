@@ -12,4 +12,7 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Build for Netlify instead of the default Cloudflare target: emits static assets to
+  // dist/ and the SSR handler as a Netlify Function, so "/" is server-rendered.
+  nitro: { preset: "netlify" },
 });
