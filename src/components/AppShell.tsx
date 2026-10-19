@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Crown, Home, Globe, Users, User, Settings } from "lucide-react";
 import type { ReactNode } from "react";
+import { JungleBackdrop } from "@/components/JungleBackdrop";
 
 const NAV = [
   { to: "/", label: "Home", icon: Home },
@@ -12,7 +13,8 @@ const NAV = [
 
 export function AppShell({ children, wide }: { children: ReactNode; wide?: boolean }) {
   return (
-    <div className="min-h-dvh pb-20 lg:pb-0">
+    <div className="relative min-h-dvh pb-20 lg:pb-0">
+      <JungleBackdrop />
       <header className="sticky top-0 z-30 border-b border-border/60 bg-background/70 backdrop-blur-md">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
           <Link to="/" className="flex items-center gap-2">
