@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from "react";
 
-export type BoardTheme = "royal" | "walnut" | "ivory" | "midnight" | "emerald";
+export type BoardTheme = "jungle" | "royal" | "walnut" | "ivory" | "midnight" | "emerald";
 export type Settings = {
   boardTheme: BoardTheme;
   sound: boolean;
@@ -10,6 +10,7 @@ export type Settings = {
 };
 
 export const BOARD_THEMES: { id: BoardTheme; name: string }[] = [
+  { id: "jungle", name: "Jungle wood" },
   { id: "royal", name: "Royal" },
   { id: "walnut", name: "Walnut" },
   { id: "ivory", name: "Ivory (light)" },
@@ -17,7 +18,7 @@ export const BOARD_THEMES: { id: BoardTheme; name: string }[] = [
   { id: "emerald", name: "Emerald" },
 ];
 
-const DEFAULTS: Settings = { boardTheme: "royal", sound: true, showLegal: true, animations: true, coordinates: true };
+const DEFAULTS: Settings = { boardTheme: "jungle", sound: true, showLegal: true, animations: true, coordinates: true };
 const KEY = "royal-chess-settings";
 let current: Settings = DEFAULTS;
 let loaded = false;

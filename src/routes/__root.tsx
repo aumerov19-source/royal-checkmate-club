@@ -55,7 +55,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { name: "theme-color", content: "#141b2e" },
+      { name: "theme-color", content: "#13261c" },
       { title: "Royal Chess" },
       { name: "description", content: "Elegant online chess — play friends in real time or challenge the computer." },
       { property: "og:title", content: "Royal Chess" },
